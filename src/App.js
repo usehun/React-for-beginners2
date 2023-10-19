@@ -1,24 +1,47 @@
-import Button from "./Button";
-import PropTypes from "prop-types";
-import styled from "./App.module.css";
-import { useState } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Home from "./routes/Home";
+import Detail from "./routes/Detail";
 
 function App() {
-  const [count, setCount] = useState(0);
-  const onClick = () => {
-    setCount((prev) => prev + 1);
-  };
   return (
-    <div>
-      <h1 className={styled.title}>Welcome</h1>
-      <button onClick={onClick}>Click me</button>
-      <p>{count}</p>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/movie/:id" element={<Detail />} />
+        <Route path="/" element={<Home />} />
+      </Routes>
+    </Router>
   );
-
-  Button.prototype = {
-    text: PropTypes.string.isRequired,
-  };
 }
 
 export default App;
+
+//   // todo list
+// function App() {
+//   const [toDo, setToDo] = useState("");
+//   const [toDos, setToDos] = useState([]);
+
+//   const onChange = (event) => setToDo(event.target.value);
+//   const onSubmit = (event) => {
+//     event.preventDefault();
+//     if (toDo === "") {
+//       return;
+//     }
+
+//     setToDos((currentArray) => [toDo, ...currentArray]);
+//     setToDo("");
+//   };
+//   console.log(toDos);
+//   return (
+//     <div>
+//       <form onSubmit={onSubmit}>
+//         <input
+//           onChange={onChange}
+//           value={toDo}
+//           type="text"
+//           placeholder="Write your to do...."
+//         ></input>
+//         <button>Add To Do</button>
+//       </form>
+//     </div>
+//   );
+// }
